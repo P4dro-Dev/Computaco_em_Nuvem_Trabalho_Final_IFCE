@@ -72,19 +72,36 @@ _Nota: Após a conclusão do deploy, o endereço IP público da sua instância s
 
 ## | Evidências do Sistema rodando no LinuxPopOS, e Servidores AWS
 
-## Print 1
+## Print 1: Saída do terraform apply — provisionamento da infraestrutura via IaC
+
+Captura do terminal Pop!_OS mostrando o Terraform aplicando 16 recursos na AWS (VPC, Subnet, IGW, Route Table, Security Group, EC2, SQS, Lambda, IAM Roles, Instance Profile, Event Source Mapping). A saída termina com a mensagem Apply complete! Resources: 1 added, 0 changed, 0 destroyed. e os dois outputs gerados:
+
+ec2_public_ip = "3.80.231.255" (IP público da instância)
+
+sqs_queue_url = "https://sqs.us-east-1.amazonaws.com/748222046826/pedidos-a-processar" (URL da fila)
 
 <img width="1920" height="967" alt="01-terraform-apply" src="https://github.com/user-attachments/assets/eb00d6e1-e252-404b-94be-238239c5041d" />
 
-## Print 2 
+## Print 2 : API Flask em execução na EC2 — rota GET /produtos
+
+Requisição HTTP curl http://3.80.231.255/produtos disparada do Pop!_OS, retornando o JSON com a lista de produtos cadastrados:
 
 <img width="1920" height="967" alt="02-api-produtos" src="https://github.com/user-attachments/assets/ab2c1a43-c97f-4e76-9e7c-5aa452a6c59b" />
 
-## Print 3
+## Print 3: Requisição curl -X POST http://3.80.231.255/pedidos com payload {"id":1,"produto":"Teclado"}, retornando {"message_id":"0702003d-4426-4185-adfb-ee4b558b70e5","status":"pedido enviado"}. Complementado pela captura do console AWS SQS mostrando a fila pedidos-a-processar criada com sucesso em us-east-1, seu ARN e a política de criptografia SSE-SQS habilitada. Evidencia o padrão desacoplamento via mensageria.
 
 <img width="1920" height="967" alt="03-pedido-sqs" src="https://github.com/user-attachments/assets/2877975d-183a-491b-8387-b1e5039070d3" />
 
-## Print 4
+## Print 4: rocessamento serverless — Log da Lambda no CloudWatch
+
+Console AWS CloudWatch exibindo o Log Group /aws/lambda/ecommerce-capacita-processor e um log stream com o processamento completo do pedido pela função Lambda:
+
+text
+START RequestId: 0a2ccfcb-e743-523f-9243-ace338dcdb69 Version: $LATEST
+[PROCESSADOR DE PEDIDOS] Pedido recebido com sucesso: {'pedido_id': 1, 'produto': 'Teclado', 'status': 'pendente'}
+END RequestId: 0a2ccfcb-e743-523f-9243-ace338dcdb69
+REPORT RequestId: 0a2ccfcb-... Duration: 1.54 ms Billed Duration: 76 ms
+Demonstra o fluxo completo: SQS → Lambda → CloudWatch Logs funcionando de ponta a ponta.
 
 <img width="1920" height="967" alt="04-cloudwatch-lambda" src="https://github.com/user-attachments/assets/23d3958b-7326-425f-9d98-e39e794b5d50" />
 
