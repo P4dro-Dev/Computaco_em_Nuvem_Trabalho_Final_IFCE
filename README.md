@@ -80,7 +80,8 @@ ec2_public_ip = "3.80.231.255" (IP público da instância)
 
 sqs_queue_url = "https://sqs.us-east-1.amazonaws.com/748222046826/pedidos-a-processar" (URL da fila)
 
-<img width="1920" height="967" alt="01-terraform-apply" src="https://github.com/user-attachments/assets/eb00d6e1-e252-404b-94be-238239c5041d" />
+<img width="1920" height="967" alt="4" src="https://github.com/user-attachments/assets/9ab8964b-c540-470d-9657-4fd856c615df" />
+
 
 ## Print 2 : API Flask em execução na EC2 — rota GET /produtos
 
