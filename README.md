@@ -90,7 +90,7 @@ Requisição HTTP curl http://3.80.231.255/produtos disparada do Pop!_OS, retorn
 
 ## Print 3: Requisição curl -X POST http://3.80.231.255/pedidos com payload {"id":1,"produto":"Teclado"}, retornando {"message_id":"0702003d-4426-4185-adfb-ee4b558b70e5","status":"pedido enviado"}. Complementado pela captura do console AWS SQS mostrando a fila pedidos-a-processar criada com sucesso em us-east-1, seu ARN e a política de criptografia SSE-SQS habilitada. Evidencia o padrão desacoplamento via mensageria.
 
-<img width="1920" height="967" alt="03-pedido-sqs" src="https://github.com/user-attachments/assets/2877975d-183a-491b-8387-b1e5039070d3" />
+<img width="1920" height="967" alt="Screenshot_2026-09-19_16-06-50" src="https://github.com/user-attachments/assets/94b0824f-e0b1-4707-b05f-4c41f519db76" />
 
 ## Print 4: rocessamento serverless — Log da Lambda no CloudWatch
 
@@ -103,7 +103,8 @@ END RequestId: 0a2ccfcb-e743-523f-9243-ace338dcdb69
 REPORT RequestId: 0a2ccfcb-... Duration: 1.54 ms Billed Duration: 76 ms
 Demonstra o fluxo completo: SQS → Lambda → CloudWatch Logs funcionando de ponta a ponta.
 
-<img width="1920" height="967" alt="04-cloudwatch-lambda" src="https://github.com/user-attachments/assets/23d3958b-7326-425f-9d98-e39e794b5d50" />
+<img width="1600" height="671" alt="44444" src="https://github.com/user-attachments/assets/cef450c5-af33-4a6d-b411-5da6e101fb6e" />
+
 
 - [ ]  log da instância EC2 com a aplicação rodando respondendo ao `curl /produtos`.
 - [ ]  AWS mostrando a mensagem chegando na fila do SQS.
