@@ -87,11 +87,11 @@ sqs_queue_url = "https://sqs.us-east-1.amazonaws.com/748222046826/pedidos-a-proc
 
 Requisição HTTP curl http://3.80.231.255/produtos disparada do Pop!_OS, retornando o JSON com a lista de produtos cadastrados:
 
-<img width="1920" height="967" alt="02-api-produtos" src="https://github.com/user-attachments/assets/ab2c1a43-c97f-4e76-9e7c-5aa452a6c59b" />
+<img width="1920" height="967" alt="Screenshot_2026-09-19_16-06-50" src="https://github.com/user-attachments/assets/ba4ee6d0-ca27-4640-ab65-94364db38bc3" />
 
 ## Print 3: Requisição curl -X POST http://3.80.231.255/pedidos com payload {"id":1,"produto":"Teclado"}, retornando {"message_id":"0702003d-4426-4185-adfb-ee4b558b70e5","status":"pedido enviado"}. Complementado pela captura do console AWS SQS mostrando a fila pedidos-a-processar criada com sucesso em us-east-1, seu ARN e a política de criptografia SSE-SQS habilitada. Evidencia o padrão desacoplamento via mensageria.
 
-<img width="1920" height="967" alt="Screenshot_2026-09-19_16-06-50" src="https://github.com/user-attachments/assets/94b0824f-e0b1-4707-b05f-4c41f519db76" />
+<img width="1920" height="967" alt="2" src="https://github.com/user-attachments/assets/eaea2851-f911-4f79-889f-1bf1a92bd7bb" />
 
 ## Print 4: rocessamento serverless — Log da Lambda no CloudWatch
 
